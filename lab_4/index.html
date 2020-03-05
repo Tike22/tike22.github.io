@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Temi Omobo's Demo Page</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="header">Temi Omobo's Demo Page</div>
+        <button class="button" onclick="clickMe()">
+          Click me to make a change
+        </button>
+        <div class="content">
+          <p>
+            Retro fam narwhal hoodie meggings viral bushwick yr chartreuse.
+            Chartreuse seitan banh mi selfies, woke ennui venmo craft beer. Air
+            plant tumeric retro DIY iPhone poutine. +1 gastropub chillwave,
+            cronut glossier pork belly tacos poke next level fanny pack vegan
+            jianbing lo-fi.
+          </p>
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script>
+      function clickMe() {
+        const content = document.querySelector(".content");
+        content.innerHTML = "Hello world";
+
+        let p1 = document.createElement("p");
+        let p2 = document.createElement('p');
+        let myName = "TemiOmobo";
+        let Fname = myName.substr(0,4);
+        let Lname = myName.substr(4,5);
+
+        p1.className = '.content';
+        p1.innerHTML = 'my name has '+ myName.length +' characers.';
+        content.appendChild(p1);
+
+        p2.className = '.content';
+        p2.innerHTML = 'the third character in my name is ' + Fname[2].toUpperCase() + ' <br> ' +  Lname.slice(-3);        
+        content.appendChild(p2);
+
+        let nameLength = Fname.length + Lname.length;
+        const header = document.querySelector(".header");
+        header.append(" " + nameLength);
+      }
+    </script>
+  </body>
+</html>
