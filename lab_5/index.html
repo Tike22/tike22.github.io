@@ -3,16 +3,15 @@
 
 <head>
   <title>Test JSON page</title>
-  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
   <div class="container">
     <div class="wrapper">
-      <div class="header">Test JSON page</div>
+      <div class="header">Temi's List of Countries</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list
-        entries</button>
+      <button class="button" onclick="clickThis()">Click me to replace list entries</button>
       <div class="content">
         <ul class="instructions">
           <li>At the click of the button above</li>
@@ -280,6 +279,32 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
+
+    function clickThis() {
+      let listOfCountries = document.querySelector(".content");
+      listOfCountries.innerHTML = '<ol class="countires"></ol>';
+      // let countryList = [];
+      var i = 0;
+      while (i < 25) {
+        var randCountry = (Math.floor(Math.random() * countries.length));
+        var node = document.createElement("li"); 
+        // var bold = document.createElement("strong");
+        var codeCountry =  countries[randCountry].code;
+        // bold.appendChild(codeCountry);
+        var nameCountry = countries[randCountry].name;
+        var codename = codeCountry + ' ' + nameCountry;
+        var textnode = document.createTextNode(codename);
+        node.appendChild(textnode); 
+        document.querySelector(".countires").appendChild(node); 
+        i++;
+      };
+      var ul = document.querySelector(".countries");
+      var items = ul.getElementsByTagName("li");
+      for (var i = 0; i < items.length; ++i) {
+        items[i][0].bold();
+      // do something with items[i], which is a <li> element
+}
+    }
   </script>
 </body>
 
