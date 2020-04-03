@@ -26,7 +26,7 @@
 
     <script>
         /* Your lab code can go here, or in an external file you include */
-        const mymap = L.map('map1').setView([38.9869, -76.9426], 13);
+        const mymap = L.map('map1').setView([38.9869, -76.9426], 12);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -36,11 +36,11 @@
         accessToken: 'pk.eyJ1IjoidGlrZTIyIiwiYSI6ImNrOGl1Y3djYzBhMmIzZXBtMHY1ODE3bjQifQ.4RdSkbce7npZMu-GZVMLOw'
         }).addTo(mymap);
         var stores = [
-        {"lat": 38.846977, "long": -76.871546},
-        {"lat": 38.879502, "long": -76.82855},
-        {"lat": 38.759632, "long": -76.808286}
+        {"lat": 38.997563, "long": -76.910024},
+        {"lat": 38.931707, "long": -76.902885},
+        {"lat": 38.944472, "long": -76.932045}
       ]
-        const marker = L.marker([38.9881, -76.9416]).addTo(mymap).bindPopup("Hornbake Library").openPopup();
+        const marker1 = L.marker([38.9881, -76.9416]).addTo(mymap).bindPopup("Hornbake Library").openPopup();
         const marker2 = L.marker([stores[0].lat, stores[0].long]).addTo(mymap)
         const marker3 = L.marker([stores[1].lat, stores[1].long]).addTo(mymap)
         const marker4 = L.marker([stores[2].lat, stores[2].long]).addTo(mymap)
