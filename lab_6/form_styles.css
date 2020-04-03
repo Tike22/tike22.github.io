@@ -1,15 +1,109 @@
-form {
+/* Setting up the Body */
 
+body {
+    font-size: 20px;
+    color: rgb(61, 61, 61);
+    background: rgb(238, 238, 238);
+    font-family: Arial, Helvetica, sans-serif;
+}  
+  
+h1 {
+    margin-left: 17px;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+/* Center the form on the page */
+
+form {
+  margin: 0 auto;
+  width: 400px;
+  /* Form outline */
+  padding: 1em;
+}
+
+/* Uniform size & alignment */
 
 label {
+  display: inline-block;
 
+  text-align: right;
 }
 
-input, textarea {
-    
+/* To make sure that all text fields have the same font settings
+   By default, textareas have a monospace font */
+
+input{
+    font: 1em 'Courier New';
+    font-weight: normal;
+   
+    /* Uniform text field size */
+    width: 300px;
+    box-sizing: border-box;
+
+    /* Match form field borders */
+    border: 1px solid #999;
+}
+textarea {
+ font: 1em 'Courier New';
+ font-weight: normal;
+
+ /* Uniform text field size */
+ width: 300px;
+ box-sizing: border-box;
+
+ /* Match form field borders */
+ border: 1px solid #999;
+ border-radius: 5px;
+ box-shadow: 5px;
+ 
+}
+
+input:focus, 
+textarea:focus {
+  /* Additional highlight for focused elements */
+  border-color: #000;
 }
 
 ul {
-
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
+form 
+li + li {
+    margin-top: 1em;
+}
+
+textarea {
+    /* Align multiline text fields with their labels */
+    vertical-align: top;
+  
+    /* Provide space to type some text */
+    height: 5em;
+}
+
+button {
+    /* Align buttons with the text fields */
+
+    background-color: #fcc174;    
+    border: 2px solid #e6ae4d;
+    border-radius: 11px;
+    display: inline-block;
+    color: #eeeeee;
+    font-family: inherit;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+  
+
+ /* button {
+    This extra margin represent roughly the same space as the space
+       between the labels and their text fields 
+    margin-left: .5em;
+} */
