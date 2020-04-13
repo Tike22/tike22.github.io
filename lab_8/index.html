@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Charts Lab</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="header">Frontend Libraries: Charts Lab</div>
+        <div class="content">
+          <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
+        <div class="footer">Let's eat out in the future!</div>
+      </div>
+    </div>
+    <script>
+            fetch("https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json")
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                const clearEmptyData = data.filter((f) => f.geocode_column_1); // making sure the coordinates are there for the array
+                const refined = clearEmptyData.map((m) => ({
+                  category: m.category,
+                  name: m.name,
+                  latlong: m.geocode_column_1.coordinates,
+                }));
+                return refined; // sending back the array of data of the name, category of the resturant and its coordinates.
+              })
+              .then((data) =>{
+                return data.reduce((result, current) => { // passing out results taking in current
+                  if (!result[current.category]) { // sets stranded key to empty array
+                    result[current.category] = [];
+                  }
+                  result[current.category].push(current);
+                  return result;
+                }, {});
+              })
+              .then((data) => {
+                console.log('new data', data );
+                const reformattedData = Object.entries(data).map((current, i) => {
+                  console.log(current);
+                  return {
+                    y: current[1].length,
+                    label: current[0],
+                  }; 
+                });
+                return reformattedData;
+              })
+              .then((results) => {
+                console.log(results);
+                const chart = new CanvasJS.Chart("chartContainer", {
+                  animationEnabled: true,
+                  title: {
+                    text: "Let's Find Somewhere to Eat"
+                  },
+                  axisX: {
+                    labelFontSize: 8,
+                    margin: 10,
+                    interval: 1,
+                  },
+                  axisY: {
+                    scaleBreaks: { 
+                      customBreaks: [
+                        {
+                          startValue: 20,
+                          endValue: 35,
+                        },
+                        {
+                          startValue: 60,
+                          endValue: 120,
+                        },
+                        {
+                          startValue: 120,
+                          endValue: 220,
+                        },
+                      ],
+                    },
+                  },
+                  data: [
+                    {
+                      type: "bar",
+                      dataPoints: results
+                    },
+                  ],
+                });
+                chart.render();
+              });
+    </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </body>
+</html>
