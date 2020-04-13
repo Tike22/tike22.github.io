@@ -3,7 +3,6 @@
   <head>
     <title>Charts Lab</title>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   </head>
 
   <body>
@@ -11,7 +10,7 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Charts Lab</div>
         <div class="content">
-          <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+          <div id="chartContainer" style="height: 480px; width: 100%;"></div>
         </div>
         <div class="footer">Let's eat out in the future!</div>
       </div>
@@ -21,11 +20,11 @@
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          const clearEmptyData = data.filter((f) => f.geocode_column_1); // making sure the coordinates are there for the array
+          const clearEmptyData = data.filter((f) => f.geocoded_column_1); // making sure the coordinates are there for the array
           const refined = clearEmptyData.map((m) => ({
             category: m.category,
             name: m.name,
-            latlong: m.geocode_column_1.coordinates,
+            latlong: m.geocoded_column_1.coordinates,
           }));
           return refined; // sending back the array of data of the name, category of the resturant and its coordinates.
         })
@@ -55,7 +54,7 @@
           console.log(results);
           const chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
-            // theme: "dark2",
+            theme: "dark2",
             title: {
               text: "Let's Find Somewhere to Eat",
             },
@@ -84,14 +83,15 @@
             },
             data: [
               {
-                type: "bar", // change to column
+                type: "column", // change to column
                 dataPoints: results,
-                // color: "#1E90FF",
+                // color: "",
               },
             ],
           });
           chart.render();
         });
     </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   </body>
 </html>
